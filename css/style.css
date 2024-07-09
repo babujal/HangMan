@@ -1,0 +1,102 @@
+body {
+    background-color: black;
+    color: beige;
+}
+
+.firstRow {
+    /* border: 3px solid navy; */
+    display: flex;
+    justify-content: space-around;
+    height: 25vh;
+}
+
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    flex-direction: column;
+}
+
+.score {
+    position: relative;
+    width: 100%;
+    height: 55%;
+    border: 6px solid navy;
+}
+
+.secondRow {
+    /* border: 3px solid navy; */
+    display: flex;
+    justify-content: space-around;
+    height: 60vh;
+}
+
+.cluesDisplay {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border: 3px solid navy;
+    width: 40%;
+}
+
+/* .draw {
+    border: 3px solid navy;
+    width: ;
+} */
+
+.category {
+    border: 3px solid navy;
+    height: 25%;
+    display: flex;
+    margin: 0 auto;
+    font-size: 60pt;
+}
+
+.word {
+    height: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.thirdRow {
+    display: flex;
+    justify-content: space-around;
+    /* border: 3px solid navy; */
+    height: 100%;
+}
+
+.letters {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    /* border: 3px solid navy; */
+    height: 100%;
+    width: 50%;
+}
+
+.chosenLetters {
+    height: 65px;
+    width: 70%;
+    border: 3px solid navy;
+}
+
+.btn {
+    background-color: navy;
+    color: yellow;
+    width: 30%;
+}
+
+.hidden {
+    color: transparent;
+}
+
+.leter {
+    border: 3px solid navy;
+    width: 60px;
+    font-size: 60pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
