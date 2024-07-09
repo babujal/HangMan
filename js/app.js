@@ -24,7 +24,7 @@ words = [
 let category
 let randomWord
 let chart
-let shift = false
+let shift = true
 /////////////Constants//////////////
 const button = document.querySelector('.btn')
 const uiCategory = document.querySelector('.category')
@@ -36,28 +36,58 @@ const compareChart = () => {
     return randomWord.toLowerCase().includes(chart)
 }
 /////////////Functions//////////////
-const updatePlayerOne = () => {
-    if (compareChart) {
-        lettersP1.innerText = chart
+const toggleShift = () => {
+    if (shift) {
+        shift = false
     }else{
-        console.log('Hanging in progress')
+        shift = true
+    }
+}
+
+const updatePlayerOne = () => {
+    if (compareChart()) {
+        const p1Letters = document.createElement('div')
+        p1Letters.className = 'chosenLetter allLetters'
+        p1Letters.innerText = chart
+        lettersP1.appendChild(p1Letters)
+    }else{
+        console.log('P1 Hanging in progress')
+        const p1Letters = document.createElement('div')
+        p1Letters.className = 'chosenLetter allLetters'
+        p1Letters.innerText = chart
+        lettersP1.appendChild(p1Letters)
     }
 }
 const updatePlayerTwo = () => {
-
+    if (compareChart()) {
+        const p2Letters = document.createElement('div')
+        p2Letters.className = 'chosenLetter allLetters'
+        p2Letters.innerText = chart
+        lettersP2.appendChild(p2Letters)
+    }else{
+        console.log('P2 Hanging in progress')
+        const p2Letters = document.createElement('div')
+        p2Letters.className = 'chosenLetter allLetters'
+        p2Letters.innerText = chart
+        lettersP2.appendChild(p2Letters)
+    }
 }
 
 const handleShift = () => {
-    if (shift === false) {
-        // updatePlayerOne
+    if (shift) {
+        updatePlayerOne()
     }else{
-        // updatePlayerTwo
+        updatePlayerTwo()
     }
 }
 
 const removeWordDivs = () => {
     const indexes = document.querySelectorAll('.leter')
     indexes.forEach(el => {
+        el.remove()
+    })
+    const allLetters = document.querySelectorAll('.allLetters')
+    allLetters.forEach(el => {
         el.remove()
     })
 }
@@ -99,8 +129,6 @@ const init = () => {
 const handleClick = () => {
     removeWordDivs()
     init()
-    console.log(`Choosen Category: ${category}`)
-    // console.log(`Random Word: ${randomWord}`)
 }
 
 ////////////////Event Listeners///////
@@ -110,8 +138,12 @@ document.addEventListener('keydown', (e) => {
     if (compareChart()) {
         console.log(`The letter ${chart} is present`)
         lookForCharOccurences('.leter')
+        handleShift()
+        toggleShift()
     } else {
         console.log(`${chart} is not present`)
+        handleShift()
+        toggleShift()
     }
 })
 button.addEventListener('click', handleClick)
