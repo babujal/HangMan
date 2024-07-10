@@ -1,7 +1,7 @@
 console.log('Connected!')
 
 ///////////////Data////////////////
-words = [
+const words = [
     {
         animals:
             ["Elephant", "Tiger", "Dolphin", "Eagle", "Kangaroo", "Penguin", "Giraffe", "Panda", "Koala", "Lion"]
@@ -23,8 +23,10 @@ words = [
 //////////////Variables//////////////
 let category
 let randomWord
+let guessedLettersArr = []
 let chart
 let shift = true
+let allowInput = true
 /////////////Constants//////////////
 const button = document.querySelector('.btn')
 const uiCategory = document.querySelector('.category')
@@ -36,6 +38,16 @@ const compareChart = () => {
     return randomWord.toLowerCase().includes(chart)
 }
 /////////////Functions//////////////
+const thereIsAWin = () => {
+    if (guessedLettersArr.sort().join('') === randomWord.split('').sort().join('')) {
+        allowInput = false
+        console.log('There is a winner')
+        return true
+    }else{
+        return false
+    }
+}
+
 const toggleShift = () => {
     if (shift) {
         shift = false
@@ -94,9 +106,13 @@ const removeWordDivs = () => {
 
 const lookForCharOccurences = (domEl) => {
     const charactersDivs = document.querySelectorAll(domEl)
+    let count = 0
     charactersDivs.forEach(el => {
         if (el.innerText.toLowerCase() === chart) {
             el.classList.remove('hidden')
+            guessedLettersArr.push(el.innerText)
+            // console.log(guessedLettersArr.sort())
+            // console.log(randomWord.split('').sort())
         }
     })
 }
@@ -134,16 +150,19 @@ const handleClick = () => {
 ////////////////Event Listeners///////
 document.addEventListener('keydown', (e) => {
     chart = e.key
-    console.log(`Key ${chart} pressed`)
-    if (compareChart()) {
-        console.log(`The letter ${chart} is present`)
-        lookForCharOccurences('.leter')
-        handleShift()
-        toggleShift()
-    } else {
-        console.log(`${chart} is not present`)
-        handleShift()
-        toggleShift()
+    
+    if (allowInput === true) {
+        if (compareChart()) {
+            console.log(`The letter ${chart} is present`)
+            lookForCharOccurences('.leter')
+            handleShift()
+            toggleShift()
+            thereIsAWin()
+        } else {
+            console.log(`${chart} is not present`)
+            handleShift()
+            toggleShift()
+        }
     }
 })
 button.addEventListener('click', handleClick)
