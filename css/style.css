@@ -46,11 +46,8 @@ body {
 } */
 
 .category {
-    border: 3px solid navy;
-    height: 25%;
-    display: flex;
     margin: 0 auto;
-    font-size: 60pt;
+    font-size: 40pt;
 }
 
 .word {
