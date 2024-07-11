@@ -46,9 +46,25 @@ const compareChart = () => {
 /////////////Functions//////////////
 const scoreGiver = () => {
     if (winnerPlayerState) {
-        scoreP1.innerText = '$'
+        const scoreEmojiP1 = document.createElement('img')
+        scoreEmojiP1.className = 'emoji'
+        scoreEmojiP1.src = './images/Winner.png'
+        scoreP1.appendChild(scoreEmojiP1)
+        ////////////////////////////
+        const scoreEmojiP2 = document.createElement('img')
+        scoreEmojiP2.className = 'emoji'
+        scoreEmojiP2.src = './images/Looser.png'
+        scoreP2.appendChild(scoreEmojiP2)
     }else {
-        scoreP2.innerText = '&'
+        const scoreEmojiP = document.createElement('img')
+        scoreEmojiP.className = 'emoji'
+        scoreEmojiP.src = './images/Winner.png'
+        scoreP2.appendChild(scoreEmojiP)
+        //////////////////////////
+        const scoreEmojiP1 = document.createElement('img')
+        scoreEmojiP1.className = 'emoji'
+        scoreEmojiP1.src = './images/Looser.png'
+        scoreP1.appendChild(scoreEmojiP1)
     }
 }
 
@@ -67,7 +83,7 @@ const findTheWinner = () => {
 }
 
 const thereIsAWin = () => {
-    if (guessedLettersArr.sort().join('') === randomWord.split('').sort().join('')) {
+    if (guessedLettersArr.sort().join('') === randomWord.toLowerCase().split('').sort().join('')) {
         allowInput = false
         findTheWinner()
         console.log('There is a winner')
@@ -139,7 +155,7 @@ const lookForCharOccurences = (domEl) => {
         if (el.innerText.toLowerCase() === chart) {
             el.classList.remove('hidden')
             //Before pushing to guessedLettersArr I have to put a condition sayng that if guessedLettersArr does not includes that letter push it
-            guessedLettersArr.push(el.innerText)
+            guessedLettersArr.push(el.innerText.toLowerCase())
             if (shift) {
                 roundPointsP1 += 1
             }else{
@@ -189,16 +205,22 @@ document.addEventListener('keydown', (e) => {
     chart = e.key
 
     if (allowInput === true) {
-        if (compareChart()) {
-            console.log(`The letter ${chart} is present`)
-            lookForCharOccurences('.leter')
-            handleShift()
-            toggleShift()
-            thereIsAWin()
-        } else {
-            console.log(`${chart} is not present`)
-            handleShift()
-            toggleShift()
+        if (guessedLettersArr.includes(chart)) {
+            console.log('Letter has been already chosen')
+            console.log(guessedLettersArr)
+        }else {
+            if (compareChart()) {
+                console.log(`The letter ${chart} is present`)
+                console.log(guessedLettersArr)
+                lookForCharOccurences('.leter')
+                handleShift()
+                toggleShift()
+                thereIsAWin()
+            } else {
+                console.log(`${chart} is not present`)
+                handleShift()
+                toggleShift()
+            }
         }
     }
 })

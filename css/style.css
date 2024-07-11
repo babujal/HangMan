@@ -19,7 +19,6 @@ body {
 }
 
 .score {
-    position: relative;
     width: 100%;
     height: 55%;
     border: 6px solid navy;
@@ -30,6 +29,10 @@ body {
     display: flex;
     justify-content: space-around;
     height: 60vh;
+}
+
+#legend{
+    margin: 0 auto;
 }
 
 .cluesDisplay {
@@ -100,4 +103,26 @@ body {
 .chosenLetter {
     font-size: 25pt;
     margin: 0 6px 0 6px;
+}
+
+.emoji {
+    max-width: 40px;
+}
+
+.emojiWin {
+    max-width: 40px;
+}
+
+.emojiLose {
+    max-width: 40px;
+}
+
+.win {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lose {
+    display: flex;
+    
 }
