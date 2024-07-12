@@ -24,10 +24,11 @@ const words = [
 let category
 let randomWord
 let guessedLettersArr = []
+let missedLettersArr = []
 let chart
 let roundPointsP1 = 0
 let roundPointsP2 = 0
-/////////////States/////////////////
+/////////////Vars suport for conditions/////////////////
 let shift = true
 let allowInput = true
 let winnerPlayerState
@@ -39,12 +40,15 @@ const lettersP1 = document.querySelector('.lettersP1')
 const lettersP2 = document.querySelector('.lettersP2')
 const scoreP1 = document.querySelector('.scoreP1')
 const scoreP2 = document.querySelector('.scoreP2')
-/////////////Suport for conditions///////////
+/////////////functions suport for conditions///////////
 const compareChart = () => {
     return randomWord.toLowerCase().includes(chart)
 }
+const missedLettersAlreadyChosen = () => {
+    return missedLettersArr.join().toLowerCase().includes(chart)
+}
 /////////////Functions//////////////
-const scoreGiver = () => {
+const scoreGiver = () => { //This function can be more DRY but when try has a problems with the nodes of the DOM
     if (winnerPlayerState) {
         const scoreEmojiP1 = document.createElement('img')
         scoreEmojiP1.className = 'emoji'
@@ -55,7 +59,7 @@ const scoreGiver = () => {
         scoreEmojiP2.className = 'emoji'
         scoreEmojiP2.src = './images/Looser.png'
         scoreP2.appendChild(scoreEmojiP2)
-    }else {
+    } else {
         const scoreEmojiP = document.createElement('img')
         scoreEmojiP.className = 'emoji'
         scoreEmojiP.src = './images/Winner.png'
@@ -73,11 +77,11 @@ const findTheWinner = () => {
         winnerPlayerState = true
         scoreGiver()
         uiCategory.innerText = 'Player One Wins'
-    }else if (roundPointsP1 < roundPointsP2) {
+    } else if (roundPointsP1 < roundPointsP2) {
         winnerPlayerState = false
         scoreGiver()
         uiCategory.innerText = 'Player Two Wins'
-    }else {
+    } else {
         uiCategory.innerText = 'It is a tie'
     }
 }
@@ -87,8 +91,9 @@ const thereIsAWin = () => {
         allowInput = false
         findTheWinner()
         console.log('There is a winner')
+        console.log(`leterP1: ${lettersP1} LettersP2: ${lettersP2}`)
         return true
-    }else{
+    } else {
         return false
     }
 }
@@ -96,7 +101,7 @@ const thereIsAWin = () => {
 const toggleShift = () => {
     if (shift) {
         shift = false
-    }else{
+    } else {
         shift = true
     }
 }
@@ -107,7 +112,7 @@ const updatePlayerOne = () => {
         p1Letters.className = 'chosenLetter allLetters'
         p1Letters.innerText = chart
         lettersP1.appendChild(p1Letters)
-    }else{
+    } else {
         console.log('P1 Hanging in progress')
         const p1Letters = document.createElement('div')
         p1Letters.className = 'chosenLetter allLetters'
@@ -121,7 +126,7 @@ const updatePlayerTwo = () => {
         p2Letters.className = 'chosenLetter allLetters'
         p2Letters.innerText = chart
         lettersP2.appendChild(p2Letters)
-    }else{
+    } else {
         console.log('P2 Hanging in progress')
         const p2Letters = document.createElement('div')
         p2Letters.className = 'chosenLetter allLetters'
@@ -133,8 +138,19 @@ const updatePlayerTwo = () => {
 const handleShift = () => {
     if (shift) {
         updatePlayerOne()
-    }else{
+    } else {
         updatePlayerTwo()
+    }
+}
+
+
+const checkMissedLetterRepeat = () => {
+    if (missedLettersAlreadyChosen()) {
+        console.log(`The letter ${chart} has already been chosen`)
+    }else {
+        handleShift()
+        toggleShift()
+        missedLettersArr.push(chart)
     }
 }
 
@@ -158,10 +174,9 @@ const lookForCharOccurences = (domEl) => {
             guessedLettersArr.push(el.innerText.toLowerCase())
             if (shift) {
                 roundPointsP1 += 1
-            }else{
+            } else {
                 roundPointsP2 += 1
             }
-            console.log(`Points P1: ${roundPointsP1}, Points P2: ${roundPointsP2}`)
         }
     })
 }
@@ -175,7 +190,7 @@ const setWord = (domEl, word) => {
         const indexes = document.createElement('div')
         indexes.className = 'hidden leter'
         indexes.innerText = el
-        console.log (indexes)
+        console.log(indexes)
         domEl.appendChild(indexes)
     });
 }
@@ -194,6 +209,7 @@ const init = () => {
 const handleClick = () => {
     removeWordDivs()
     guessedLettersArr = []
+    missedLettersArr = []
     roundPointsP1 = 0
     roundPointsP2 = 0
     allowInput = true
@@ -208,7 +224,7 @@ document.addEventListener('keydown', (e) => {
         if (guessedLettersArr.includes(chart)) {
             console.log('Letter has been already chosen')
             console.log(guessedLettersArr)
-        }else {
+        } else {
             if (compareChart()) {
                 console.log(`The letter ${chart} is present`)
                 console.log(guessedLettersArr)
@@ -218,8 +234,8 @@ document.addEventListener('keydown', (e) => {
                 thereIsAWin()
             } else {
                 console.log(`${chart} is not present`)
-                handleShift()
-                toggleShift()
+                checkMissedLetterRepeat()
+                console.log(`The character has been push to missedLettersArr: ${missedLettersArr}`)
             }
         }
     }
