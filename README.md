@@ -14,7 +14,7 @@ I chose this game because of its simple yet entertaining nature, and it provides
 
 ### Deployed Game
 
-You can play the game [here](link-to-deployed-game).
+You can play the game [here](https://babujal.github.io/HangMan/).
 
 ### Instructions
 
