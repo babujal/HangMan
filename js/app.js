@@ -265,6 +265,7 @@ const setWord = (domEl, word) => {
 }
 
 const init = () => {
+    button.innerText = ('Play Another Round!')
     const randomObjectIndex = Math.floor(Math.random() * words.length)
     const choosenObj = words[randomObjectIndex]
     category = Object.keys(choosenObj)[0]
@@ -281,6 +282,7 @@ const setInstructions = () => {
         instructions.className = 'instructions'
         instructions.innerHTML = instructionText
         uiWordSpace.appendChild(instructions)
+        button.innerText = 'Start!'
     }
 }
 
