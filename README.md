@@ -1,6 +1,6 @@
 # 2-Player Hangman Game
 
-![Screenshot](./images/%20HangMan%20Screen.png)
+![Screenshot](./images/HangMan.png)
 
 ## Game's Name: 2-Player Hangman
 
