@@ -126,3 +126,7 @@ body {
     display: flex;
     
 }
+.instructions {
+    font-size: large;
+    margin-left: 10px;
+}

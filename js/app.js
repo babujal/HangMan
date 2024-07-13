@@ -31,6 +31,7 @@ let roundPointsP2 = 0
 /////////////Vars suport for conditions/////////////////
 let shift = true
 let allowInput = true
+let togleInstructions = true
 let winnerPlayerState
 /////////////Constants//////////////
 const button = document.querySelector('.btn')
@@ -40,6 +41,17 @@ const lettersP1 = document.querySelector('.lettersP1')
 const lettersP2 = document.querySelector('.lettersP2')
 const scoreP1 = document.querySelector('.scoreP1')
 const scoreP2 = document.querySelector('.scoreP2')
+const instructionText = '1. Two players take turns guessing letters to find a hidden word.<br>' +
+'2. Each wrong guess draws part of the hangman. There are 8 steps to complete the drawing.<br>' +
+'3. The game ends when the drawing is finished (the guesser loses) or the word is found.<br>' +
+'4. If the word is found before the drawing is finished:<br>' +
+'- The player with the most correctly guessed letters wins.<br>' +
+'- A tie occurs if both players have guessed an equal number of letters.<br>' +
+'<br>' +
+'Click Start Button To  Start.<br>' + 
+'<br>' +
+'Click Start Over Button To Reset Puntuation.'
+const instructionsDiv = document.querySelector('.instructions')
 /////////////functions suport for conditions///////////
 const compareChart = () => {
     return randomWord.toLowerCase().includes(chart)
@@ -90,8 +102,6 @@ const thereIsAWin = () => {
     if (guessedLettersArr.sort().join('') === randomWord.toLowerCase().split('').sort().join('')) {
         allowInput = false
         findTheWinner()
-        console.log('There is a winner')
-        console.log(`leterP1: ${lettersP1} LettersP2: ${lettersP2}`)
         return true
     } else {
         return false
@@ -206,6 +216,21 @@ const init = () => {
     setWord(uiWordSpace, randomWord.split(''))
 }
 
+const setInstructions = () => {
+    if (togleInstructions) {
+        const instructions = document.createElement('p')
+        instructions.className = 'instructions'
+        instructions.innerHTML = instructionText
+        uiWordSpace.appendChild(instructions)
+    }
+}
+
+const removeInstructions = () => {
+    const instructionsDiv = document.querySelector('.instructions')
+    instructionsDiv.remove()
+    togleInstructions = false
+}
+
 const handleClick = () => {
     removeWordDivs()
     guessedLettersArr = []
@@ -214,6 +239,9 @@ const handleClick = () => {
     roundPointsP2 = 0
     allowInput = true
     init()
+    if (togleInstructions) {
+        removeInstructions()
+    }
 }
 
 ////////////////Event Listeners///////
@@ -226,8 +254,6 @@ document.addEventListener('keydown', (e) => {
             console.log(guessedLettersArr)
         } else {
             if (compareChart()) {
-                console.log(`The letter ${chart} is present`)
-                console.log(guessedLettersArr)
                 lookForCharOccurences('.leter')
                 handleShift()
                 toggleShift()
@@ -235,9 +261,10 @@ document.addEventListener('keydown', (e) => {
             } else {
                 console.log(`${chart} is not present`)
                 checkMissedLetterRepeat()
-                console.log(`The character has been push to missedLettersArr: ${missedLettersArr}`)
             }
         }
     }
 })
 button.addEventListener('click', handleClick)
+
+setInstructions()
