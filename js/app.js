@@ -1,4 +1,3 @@
-console.log('Connected!')
 
 ///////////////Data////////////////
 const words = [
@@ -12,7 +11,7 @@ const words = [
     },
     {
         pets:
-            ["Dog", "Cat", "Hamster", "Rabbit", "Parrot", "Goldfish", "Turtle", "Guinea Pig", "Ferret", "Budgerigar"]
+            ["Dog", "Cat", "Hamster", "Rabbit", "Parrot", "Goldfish", "Turtle",  "Ferret", "Budgerigar"]
     },
     {
         phones:
@@ -28,6 +27,8 @@ let missedLettersArr = []
 let chart
 let roundPointsP1 = 0
 let roundPointsP2 = 0
+let missedLettersP1 = 0
+let missedLettersP2 = 0
 /////////////Vars suport for conditions/////////////////
 let shift = true
 let allowInput = true
@@ -41,6 +42,10 @@ const lettersP1 = document.querySelector('.lettersP1')
 const lettersP2 = document.querySelector('.lettersP2')
 const scoreP1 = document.querySelector('.scoreP1')
 const scoreP2 = document.querySelector('.scoreP2')
+const instructionsDiv = document.querySelector('.instructions')
+const messagesDiv = document.querySelector('.messages')///////////
+const msgTurnP1 = 'Is Player 1 turn'//////////////
+const msgTurnP2 = 'Is Player 2 turn'//////////////
 const instructionText = '1. Two players take turns guessing letters to find a hidden word.<br>' +
 '2. Each wrong guess draws part of the hangman. There are 8 steps to complete the drawing.<br>' +
 '3. The game ends when the drawing is finished (the guesser loses) or the word is found.<br>' +
@@ -51,7 +56,6 @@ const instructionText = '1. Two players take turns guessing letters to find a hi
 'Click Start Button To  Start.<br>' + 
 '<br>' +
 'Click Start Over Button To Reset Puntuation.'
-const instructionsDiv = document.querySelector('.instructions')
 /////////////functions suport for conditions///////////
 const compareChart = () => {
     return randomWord.toLowerCase().includes(chart)
@@ -60,7 +64,23 @@ const missedLettersAlreadyChosen = () => {
     return missedLettersArr.join().toLowerCase().includes(chart)
 }
 /////////////Functions//////////////
-const scoreGiver = () => { //This function can be more DRY but when try has a problems with the nodes of the DOM
+const removeMsg = () => {
+    //Remove msg remove()
+    const msgDiv = document.querySelector('.msg')
+    msgDiv.remove()
+}
+
+const displayMsg = (msg) => { //call this fnc on line 159
+    //display the message
+    const msgText = document.createElement('p')
+    msgText.className = 'msg'
+    msgText.innerText = msg
+    messagesDiv.appendChild(msgText)
+    //timeOout call func to remove the message
+    setTimeout(removeMsg, 3000)
+}
+
+const scoreGiver = () => {
     if (winnerPlayerState) {
         const scoreEmojiP1 = document.createElement('img')
         scoreEmojiP1.className = 'emoji'
@@ -90,7 +110,7 @@ const findTheWinner = () => {
         scoreGiver()
         uiCategory.innerText = 'Player One Wins'
     } else if (roundPointsP1 < roundPointsP2) {
-        winnerPlayerState = false
+        winnerPlayerState = true
         scoreGiver()
         uiCategory.innerText = 'Player Two Wins'
     } else {
@@ -98,10 +118,47 @@ const findTheWinner = () => {
     }
 }
 
+const findALooser = () => {
+    if (missedLettersP1 === 8) {
+        const scoreEmojiP = document.createElement('img')
+        scoreEmojiP.className = 'emoji'
+        scoreEmojiP.src = './images/Winner.png'
+        scoreP2.appendChild(scoreEmojiP)
+        //////////////////////////
+        const scoreEmojiP1 = document.createElement('img')
+        scoreEmojiP1.className = 'emoji'
+        scoreEmojiP1.src = './images/Looser.png'
+        scoreP1.appendChild(scoreEmojiP1)
+        uiCategory.innerText = 'Player One Has Been Hanged'
+    }
+    if (missedLettersP2 === 8) {
+        const scoreEmojiP1 = document.createElement('img')
+        scoreEmojiP1.className = 'emoji'
+        scoreEmojiP1.src = './images/Winner.png'
+        scoreP1.appendChild(scoreEmojiP1)
+        ////////////////////////////
+        const scoreEmojiP2 = document.createElement('img')
+        scoreEmojiP2.className = 'emoji'
+        scoreEmojiP2.src = './images/Looser.png'
+        scoreP2.appendChild(scoreEmojiP2)
+        uiCategory.innerText = 'Player Two Has Been Hanged'
+    }
+}
+
 const thereIsAWin = () => {
     if (guessedLettersArr.sort().join('') === randomWord.toLowerCase().split('').sort().join('')) {
         allowInput = false
         findTheWinner()
+        return true
+    } else {
+        return false
+    }
+}
+
+const thereIsALooser = () => {
+    if (missedLettersP1 === 8 || missedLettersP2 === 8) {
+        allowInput = false
+        findALooser()
         return true
     } else {
         return false
@@ -123,7 +180,7 @@ const updatePlayerOne = () => {
         p1Letters.innerText = chart
         lettersP1.appendChild(p1Letters)
     } else {
-        console.log('P1 Hanging in progress')
+        missedLettersP1 += 1
         const p1Letters = document.createElement('div')
         p1Letters.className = 'chosenLetter allLetters'
         p1Letters.innerText = chart
@@ -137,7 +194,7 @@ const updatePlayerTwo = () => {
         p2Letters.innerText = chart
         lettersP2.appendChild(p2Letters)
     } else {
-        console.log('P2 Hanging in progress')
+        missedLettersP2 += 1
         const p2Letters = document.createElement('div')
         p2Letters.className = 'chosenLetter allLetters'
         p2Letters.innerText = chart
@@ -148,15 +205,18 @@ const updatePlayerTwo = () => {
 const handleShift = () => {
     if (shift) {
         updatePlayerOne()
+        displayMsg(msgTurnP2)
     } else {
         updatePlayerTwo()
+        displayMsg(msgTurnP1)
     }
 }
 
 
 const checkMissedLetterRepeat = () => {
     if (missedLettersAlreadyChosen()) {
-        console.log(`The letter ${chart} has already been chosen`)
+        const msgLetterReapeted = `The letter ${chart.toUpperCase()} has already been chosen`
+        displayMsg(msgLetterReapeted)
     }else {
         handleShift()
         toggleShift()
@@ -200,7 +260,6 @@ const setWord = (domEl, word) => {
         const indexes = document.createElement('div')
         indexes.className = 'hidden leter'
         indexes.innerText = el
-        console.log(indexes)
         domEl.appendChild(indexes)
     });
 }
@@ -238,6 +297,8 @@ const handleClick = () => {
     roundPointsP1 = 0
     roundPointsP2 = 0
     allowInput = true
+    missedLettersP1 = 0
+    missedLettersP2 = 0
     init()
     if (togleInstructions) {
         removeInstructions()
@@ -250,8 +311,8 @@ document.addEventListener('keydown', (e) => {
 
     if (allowInput === true) {
         if (guessedLettersArr.includes(chart)) {
-            console.log('Letter has been already chosen')
-            console.log(guessedLettersArr)
+            const msgLetterReapeted = `The letter ${chart.toUpperCase()} has already been chosen`
+            displayMsg(msgLetterReapeted)
         } else {
             if (compareChart()) {
                 lookForCharOccurences('.leter')
@@ -259,8 +320,8 @@ document.addEventListener('keydown', (e) => {
                 toggleShift()
                 thereIsAWin()
             } else {
-                console.log(`${chart} is not present`)
                 checkMissedLetterRepeat()
+                thereIsALooser()
             }
         }
     }
