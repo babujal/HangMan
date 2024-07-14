@@ -120,28 +120,14 @@ const findTheWinner = () => {
 
 const findALooser = () => {
     if (missedLettersP1 === 8) {
-        const scoreEmojiP = document.createElement('img')
-        scoreEmojiP.className = 'emoji'
-        scoreEmojiP.src = './images/Winner.png'
-        scoreP2.appendChild(scoreEmojiP)
-        //////////////////////////
-        const scoreEmojiP1 = document.createElement('img')
-        scoreEmojiP1.className = 'emoji'
-        scoreEmojiP1.src = './images/Looser.png'
-        scoreP1.appendChild(scoreEmojiP1)
+        winnerPlayerState = false
+        scoreGiver()
         uiCategory.innerText = 'Player One Has Been Hanged'
     }
     if (missedLettersP2 === 8) {
-        const scoreEmojiP1 = document.createElement('img')
-        scoreEmojiP1.className = 'emoji'
-        scoreEmojiP1.src = './images/Winner.png'
-        scoreP1.appendChild(scoreEmojiP1)
-        ////////////////////////////
-        const scoreEmojiP2 = document.createElement('img')
-        scoreEmojiP2.className = 'emoji'
-        scoreEmojiP2.src = './images/Looser.png'
-        scoreP2.appendChild(scoreEmojiP2)
-        uiCategory.innerText = 'Player Two Has Been Hanged'
+        winnerPlayerState = true
+        scoreGiver()
+        uiCategory.innerText = 'Player Two Have Been Hang'
     }
 }
 
