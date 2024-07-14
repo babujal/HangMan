@@ -110,7 +110,7 @@ const findTheWinner = () => {
         scoreGiver()
         uiCategory.innerText = 'Player One Wins'
     } else if (roundPointsP1 < roundPointsP2) {
-        winnerPlayerState = true
+        winnerPlayerState = false
         scoreGiver()
         uiCategory.innerText = 'Player Two Wins'
     } else {
