@@ -11,7 +11,7 @@ const words = [
     },
     {
         pets:
-            ["Dog", "Cat", "Hamster", "Rabbit", "Parrot", "Goldfish", "Turtle",  "Ferret", "Budgerigar"]
+            ["Dog", "Cat", "Hamster", "Rabbit", "Parrot", "Goldfish", "Turtle", "Ferret", "Budgerigar"]
     },
     {
         phones:
@@ -47,15 +47,15 @@ const messagesDiv = document.querySelector('.messages')///////////
 const msgTurnP1 = 'Is Player 1 turn'//////////////
 const msgTurnP2 = 'Is Player 2 turn'//////////////
 const instructionText = '1. Two players take turns guessing letters to find a hidden word.<br>' +
-'2. Each wrong guess draws part of the hangman. There are 8 steps to complete the drawing.<br>' +
-'3. The game ends when the drawing is finished (the guesser loses) or the word is found.<br>' +
-'4. If the word is found before the drawing is finished:<br>' +
-'- The player with the most correctly guessed letters wins.<br>' +
-'- A tie occurs if both players have guessed an equal number of letters.<br>' +
-'<br>' +
-'Click Start Button To  Start.<br>' + 
-'<br>' +
-'Click Start Over Button To Reset Puntuation.'
+    '2. Each wrong guess draws part of the hangman. There are 8 steps to complete the drawing.<br>' +
+    '3. The game ends when the drawing is finished (the guesser loses) or the word is found.<br>' +
+    '4. If the word is found before the drawing is finished:<br>' +
+    '- The player with the most correctly guessed letters wins.<br>' +
+    '- A tie occurs if both players have guessed an equal number of letters.<br>' +
+    '<br>' +
+    'Click Start Button To  Start.<br>' +
+    '<br>' +
+    'Click Start Over Button To Reset Puntuation.'
 /////////////functions suport for conditions///////////
 const compareChart = () => {
     return randomWord.toLowerCase().includes(chart)
@@ -81,26 +81,31 @@ const displayMsg = (msg) => { //call this fnc on line 159
 }
 
 const scoreGiver = () => {
+
+    const scores = {
+        winnerEmj: './images/Winner.png',
+        loserEmj: './images/Looser.png',
+
+        win: function () {
+            const winEmoji = document.createElement('img')
+            winEmoji.className = 'emoji'
+            winEmoji.src = this.winnerEmj
+            return winEmoji
+        },
+        lose: function () {
+            const loseEmoji = document.createElement('img')
+            loseEmoji.className = 'emoji'
+            loseEmoji.src = this.loserEmj
+            return loseEmoji
+        }
+    }
+
     if (winnerPlayerState) {
-        const scoreEmojiP1 = document.createElement('img')
-        scoreEmojiP1.className = 'emoji'
-        scoreEmojiP1.src = './images/Winner.png'
-        scoreP1.appendChild(scoreEmojiP1)
-        ////////////////////////////
-        const scoreEmojiP2 = document.createElement('img')
-        scoreEmojiP2.className = 'emoji'
-        scoreEmojiP2.src = './images/Looser.png'
-        scoreP2.appendChild(scoreEmojiP2)
+        scoreP1.appendChild(scores.win())
+        scoreP2.appendChild(scores.lose())
     } else {
-        const scoreEmojiP = document.createElement('img')
-        scoreEmojiP.className = 'emoji'
-        scoreEmojiP.src = './images/Winner.png'
-        scoreP2.appendChild(scoreEmojiP)
-        //////////////////////////
-        const scoreEmojiP1 = document.createElement('img')
-        scoreEmojiP1.className = 'emoji'
-        scoreEmojiP1.src = './images/Looser.png'
-        scoreP1.appendChild(scoreEmojiP1)
+        scoreP2.appendChild(scores.win())
+        scoreP1.appendChild(scores.lose())
     }
 }
 
@@ -203,7 +208,7 @@ const checkMissedLetterRepeat = () => {
     if (missedLettersAlreadyChosen()) {
         const msgLetterReapeted = `The letter ${chart.toUpperCase()} has already been chosen`
         displayMsg(msgLetterReapeted)
-    }else {
+    } else {
         handleShift()
         toggleShift()
         missedLettersArr.push(chart)
