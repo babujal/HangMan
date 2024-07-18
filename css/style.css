@@ -134,6 +134,14 @@ body {
 .message {
     margin: 0 auto;
 }
-.drawP1, .drawP2 {
+#drawP1, #drawP2 {
     margin: 0 auto;
+    position: relative;
+    width: 30%;
+}
+
+#canvasP1, #canvasP2 {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
