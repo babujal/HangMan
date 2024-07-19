@@ -85,12 +85,6 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -100,19 +94,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -122,19 +104,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -150,19 +120,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -185,19 +143,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -212,11 +158,6 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 150)
             ctx.lineTo(canvas.width / 1.5, 215)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ///////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 2, 175)
             ctx.strokeStyle = 'white'
@@ -227,19 +168,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -254,18 +183,8 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 150)
             ctx.lineTo(canvas.width / 1.5, 215)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ///////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 2, 175)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            //////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 1.2, 175)
             ctx.strokeStyle = 'white'
@@ -276,19 +195,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -303,25 +210,10 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 150)
             ctx.lineTo(canvas.width / 1.5, 215)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ///////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 2, 175)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            //////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 1.2, 175)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 215)
             ctx.lineTo(canvas.width / 1.3, 270)
             ctx.strokeStyle = 'white'
@@ -332,19 +224,7 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 4, 430)
             ctx.lineTo(canvas.width / 4, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            /////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 4, 50)
             ctx.lineTo(canvas.width / 1.5, 50)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////////
-            ctx.beginPath()
-            ctx.moveTo(canvas.width / 1.5, 50)
             ctx.lineTo(canvas.width / 1.5, 120)
             ctx.strokeStyle = 'white'
             ctx.lineWidth = 5
@@ -359,32 +239,12 @@ const createCanvas = (divId, playerMissedLettersVar) => {
             ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 150)
             ctx.lineTo(canvas.width / 1.5, 215)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ///////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 2, 175)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            //////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 155)
             ctx.lineTo(canvas.width / 1.2, 175)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ////////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 215)
             ctx.lineTo(canvas.width / 1.3, 270)
-            ctx.strokeStyle = 'white'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            //////////////////
-            ctx.beginPath()
             ctx.moveTo(canvas.width / 1.5, 215)
             ctx.lineTo(canvas.width / 1.8, 270)
             ctx.strokeStyle = 'white'
